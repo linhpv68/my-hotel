@@ -61,14 +61,33 @@
         {
         }
 
-        public function delete()
+        public function delete($id)
         {
+            $array = array('id_user' => $id);
+            $this->db->where($array);
+            $query = $this->db->delete('tuser');
+
+            return $query;
+
+
         }
 
-        public function view()
+        public function view($data)
         {
-            $this->db->select('*');
-            return $this->db->get('tuser')->result_array();
+            if ($data==="all"){
+                //lấy tất cả
+                $this->db->select('*');
+                return $this->db->get('tuser')->result_array();
+            }else{
+                //lấy 1 user
+                $this->db->select('image');
+                $array = array('id_user' => $data);
+                $this->db->where($array);
+                return $this->db->get('tuser')->row();
+            }
+
+
+
         }
 
 

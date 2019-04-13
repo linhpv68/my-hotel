@@ -140,7 +140,6 @@
                     $user = $this->User_model->add($input);
                     if ($user == false) {
                         $erro = 'Tên tài khoản đã được sửa dụng';
-
                         //Xóa ảnh trên sourec vừa up lên
                         delete_image($input['image']);
 
@@ -168,7 +167,7 @@
                 }
 
             } else {
-               /* $this->get_user();*/
+                /* $this->get_user();*/
                 $this->load->view('backend/users', array(
                     'list_users' => $this->get_user()
                 ));
@@ -181,18 +180,51 @@
 
         public function delete($id)
         {
-            //$input = $this->input->get();
-            var_dump($id) ;
-            echo 'xóa';
-            exit;
+            $image = $this->User_model->view($id);
+
+            if (isset($image)) {
+                $this->load->helper('upload_image_helper');
+                $image = $image->image;
+                if ($image != NUll) {
+                    echo $image;
+                    //xóa ảnh
+                    delete_image($image);
+                }
+                //xóa user
+                $query = $this->User_model->delete($id);
+
+                if ($query == true){
+//                    $this->get_user();
+//                    $erro = 'Xóa tài khoản thành công.';
+//                    $this->load->view('backend/users.php', array(
+//                        'erro' => $erro,
+//                        'list_users' => $this->get_user()
+//                    ));
+                    $this->load->helper('url');
+                    redirect('http://localhost/quanlykhachsan/view-users');
+
+                }elseif($query == false){
+                    $this->load->helper('url');
+                    redirect('http://localhost/quanlykhachsan/view-users');
+//                    $erro = 'Xóa tài khoản không thành công';
+//
+//                    $list_users = $this->get_user();
+//                    $this->load->view('backend/users.php', array(
+//                        'list_users' => $list_users,
+//                        'erro' => $erro
+//
+//                    ));
+                }
+
+            }
         }
 
         public function view()
         {
             $list_users = $this->get_user();
-                $this->load->view('backend/users', array(
-                    'list_users' => $list_users
-                ));
+            $this->load->view('backend/users', array(
+                'list_users' => $list_users
+            ));
         }
 
         public function get_user()
@@ -200,7 +232,7 @@
             $user = $this->session->userdata('userInfoAdmin');
 
             if ($user['role'] == 2 or $user['role'] == 1) {
-                $list_users = $this->User_model->view();
+                $list_users = $this->User_model->view("all");
 
                 for ($i = 0; $i < count($list_users); $i++) {
                     if ($list_users[$i]['image'] == NULL) {
