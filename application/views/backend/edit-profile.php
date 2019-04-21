@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Danh Sách người dùng</title>
+    <title>Sửa Tài Khoản</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="template/backend/assets/images/logo_factory.png">
 
@@ -65,7 +66,7 @@
                             </h5>
                         </div>
                         <!-- item-->
-                        <a href="edit-user?id=<?=$data['id_user'] ?>" class="dropdown-item notify-item">
+                        <a href="admin/profile" class="dropdown-item notify-item">
                             <i class="fa fa-user"></i> <span>Cá nhân</span>
                         </a>
                         <a href="admin/logout" class="dropdown-item notify-item">
@@ -150,113 +151,97 @@
     </div>
     <!-- End Sidebar -->
 
-
     <div class="content-page">
 
         <!-- Start content -->
         <div class="content">
+
             <div class="container-fluid">
+
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="breadcrumb-holder">
-                            <h1 class="main-title float-left">Người dùng</h1>
+                            <h1 class="main-title float-left"><?= $user['username'] ?></h1>
                             <ol class="breadcrumb float-right">
-                                <li class="breadcrumb-item">Trang chủ</li>
-                                <li class="breadcrumb-item active">Người dùng</li>
+                                <li class="breadcrumb-item">Dashboard</li>
+                                <li class="breadcrumb-item">Người dùng</li>
+                                <li class="breadcrumb-item active">Sửa</li>
                             </ol>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
                 <!-- end row -->
+                <?php
+                    if (isset($notify) && $notify != NULL) {
+                        //var_dump($notify);
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo '<h4 class="alert-heading">Thông Báo</h4>';
+                        echo "<p><b>$notify</b></p>";
+                        echo '</div>';
+                    }
+                ?>
                 <div class="row">
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-
                         <div class="card mb-3">
-
                             <div class="card-header">
-                                <div>
-                                    <span style="color: #761c19">
-                                        <?php
-                                            if (isset($erro)) {
-                                                echo $erro;
-                                            }
-                                        ?>
-                                    </span>
-                                </div>
-                                <span class="pull-right">
-                                    <button class="btn btn-primary btn-sm" data-toggle="modal"
-                                            data-target="#modal_add_user">
-                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                        Thêm mới
-                                    </button>
-                                </span>
-                                <div class="modal fade custom-modal" tabindex="-1" role="dialog"
-                                     aria-labelledby="modal_add_user" aria-hidden="true" id="modal_add_user">
-                                    <div class="modal-dialog">
-                                        <!--thêm mới modal-->
-                                        <div class="modal-content">
+                                <h3><i class="fa fa-user"></i> Thông tin tài khoản</h3>
+                            </div>
 
-                                            <!--<form action="add" method="post" enctype="multipart/form-data">-->
-                                            <form class="theme-login-form" method="post" action="add-user"
-                                                  enctype="multipart/form-data" accept-charset="utf-8">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Thêm mới người dùng</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"><span
-                                                                aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                                                    </button>
+                            <div class="card-body">
+
+
+                                <form action="edit-user" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+
+                                    <div class="row">
+
+                                        <div class="col-lg-9 col-xl-9">
+
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                            <label>Tên tài khoản:</label>
+                                                            <input class="form-control" name="username" type="text" required value="<?=$user['username']?>" />
+                                                            <input class="form-control" name="id_user" type="hidden" required value="<?=$user['id_user']?>" />
+                                                    </div>
                                                 </div>
-                                                <div class="modal-body">
 
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="form-group">
-                                                                <label>Tên tài khoản:</label>
-                                                                <input class="form-control" name="username" type="text"
-                                                                       required/>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-lg-12">
+
+                                                    <div class="form-group">
+                                                        <label>Địa chỉ Email</label>
+                                                        <input class="form-control" name="emailaddress" type="email" value="<?=$user['emailaddress']?>" required />
                                                     </div>
 
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Họ Đệm</label>
-                                                                <input class="form-control" name="firstname" type="text"
-                                                                       required/>
+                                                                <input class="form-control" name="firstname" type="text" value="<?=$user['firstname']?>"  required />
                                                             </div>
                                                         </div>
-
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Tên</label>
-                                                                <input class="form-control" name="lastname" type="text"
-                                                                       required/>
+                                                                <input class="form-control" name="lastname" type="text" value="<?=$user['lastname']?>" required />
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
-                                                                <label>Địa chỉ Email</label>
-                                                                <input class="form-control" name="emailaddress"
-                                                                       type="email"
-                                                                       required/>
+                                                                <label>Mật khẩu</label>
+                                                                <input class="form-control" name="password" type="password" required />
                                                             </div>
                                                         </div>
-
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
-                                                                <label>Mật khẩu</label>
-                                                                <input class="form-control" name="password"
-                                                                       type="password"
-                                                                       required/>
+                                                                <label>Nhập lại Mật khẩu</label>
+                                                                <input class="form-control" name="re-password" type="password" />
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
@@ -271,24 +256,11 @@
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
-                                                                <label>Nhập lại Mật khẩu</label>
-                                                                <input class="form-control" name="re-password"
-                                                                       type="password"/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="form-group">
                                                                 <label>Ngày Sinh:</label>
-                                                                <input class="form-control" name="birthday" type="date"
-                                                                       data-date=""
-                                                                       data-date-format="DD/MM/YYYY">
+                                                                <input class="form-control" name="birthday" type="date" data-date="" value="<?=$user['birthday']?>" data-date-format="DD/MM/YYYY">
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
@@ -299,103 +271,48 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>Số Điện thoại</label>
-                                                                <input name="numberphone" class="form-control"
-                                                                       type="number"
-                                                                       placeholder="Số điện thoại"/>
+                                                                <input name="numberphone" class="form-control" type="number" value="<?=$user['numberphone']?>" placeholder="Số điện thoại" />
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="form-group">
-                                                        <label>Ảnh đại diện (không bắt buộc):</label> <br/>
-                                                        <input type="file" name="files" size="20"/>
-                                                    </div>
-
                                                 </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary">Thêm</button>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <button type="submit" class="btn btn-primary">Sửa Tài khoản</button>
                                                 </div>
+                                            </div>
 
-                                            </form>
+                                        </div>
+
+
+                                        <div class="col-lg-3 col-xl-3 border-left">
+                                            <div class="m-b-10"></div>
+
+                                            <div id="avatar_image">
+                                                <img alt="image" style="max-width:100px; height:auto;"
+                                                     src="assets/images/<?=$user['image']?>"/>
+                                                <br/>
+                                                <i class="fa fa-trash-o fa-fw"></i> <a class="delete_image" href="#">Xóa avatar</a>
+
+                                            </div>
+                                            <div id="image_deleted_text"></div>
+
+
+                                            <div class="m-b-10"></div>
+
+                                            <div class="form-group">
+                                                <label>Thay đổi avatar</label>
+                                                <input type="file" name="files" size="20" class="form-control" />
+                                            </div>
 
                                         </div>
                                     </div>
-                                </div>
-                                <h3><i class="fa fa-user"></i> Tổng Số: (<?php echo count($list_users) . ' user'; ?>)
-                                </h3>
-                            </div>
-                            <!-- end card-header -->
 
-                            <div class="card-body">
-
-
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th style="width:50px">ID</th>
-                                            <th>Tài Khoản</th>
-                                            <th style="width:130px">Thông tin</th>
-                                            <th style="width:130px">loại tài khoản</th>
-                                            <th style="width:150px">Số điện thoại</th>
-                                            <th style="width:120px">thao tác</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php foreach ($list_users as $list_user): ?>
-                                            <tr>
-                                                <th><?= $list_user['id_user'] ?></th>
-
-                                                <td>
-                                                <span style="float: left; margin-right:10px;">
-                                                    <img alt="image"
-                                                         style="max-width:40px; height:auto;"
-                                                         src="assets/images/<?= $list_user['image'] ?>">
-                                                </span>
-                                                    <strong><?= $list_user['username'] ?></strong> <br/>
-                                                    <small><?= $list_user['emailaddress'] ?></small>
-                                                </td>
-                                                <td>
-                                                    <strong><?= $list_user['firstname'] . ' ' . $list_user['lastname'] ?></strong>
-                                                    <br>
-                                                    <p>Ngày sinh : <?= $list_user['birthday'] ?></p>
-                                                    <p>Giới tính : <?= $list_user['gender'] ?></p>
-                                                </td>
-                                                <td><?= $list_user['role'] ?></td>
-                                                <td><?= $list_user['numberphone'] ?></td>
-
-                                                <td>
-                                                    <!--Sửa-->
-<!--                                                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit_user">-->
-                                                    <a href="edit-user?id=<?=$list_user['id_user']?>" class="btn btn-primary btn-sm">
-                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    </a>
-
-                                                    <!--Xóa-->
-                                                    <a href="javascript:deleteRecord('<?= $list_user['id_user'] ?>','<?= $list_user['username'] ?>');"
-                                                       class="btn btn-danger btn-sm" data-placement="top"
-                                                       data-toggle="tooltip" data-title="Delete"><i
-                                                                class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                    <script>
-                                                        function deleteRecord(RecordId, RecordName) {
-                                                            if (confirm('Bạn có muốn xóa '+RecordName+'?')) {
-                                                                window.location.href = 'delete-user/'+RecordId;
-                                                            }
-                                                        }
-                                                    </script>
-                                                </td>
-
-                                            </tr>
-                                        <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                                </form>
 
                             </div>
                             <!-- end card-body -->
@@ -408,6 +325,7 @@
 
                 </div>
                 <!-- end row -->
+
 
             </div>
             <!-- END container-fluid -->
@@ -452,4 +370,5 @@
 <!-- END Java Script for this page -->
 
 </body>
+
 </html>

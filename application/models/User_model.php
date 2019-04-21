@@ -57,8 +57,14 @@
             }
         }
 
-        public function edit()
+        public function edit($input)
         {
+            $array = array('id_user' => $input['id_user']);
+            $input['password'] = md5($input['password']);
+            $this->db->where($array);
+            $query = $this->db->update('tuser',$input);
+
+            return $query;
         }
 
         public function delete($id)
@@ -68,27 +74,28 @@
             $query = $this->db->delete('tuser');
 
             return $query;
-
-
         }
 
         public function view($data)
         {
-            if ($data==="all"){
+            if ($data === "all") {
                 //lấy tất cả
                 $this->db->select('*');
                 return $this->db->get('tuser')->result_array();
-            }else{
+            } else {
                 //lấy 1 user
-                $this->db->select('image');
+                $this->db->select('*');
                 $array = array('id_user' => $data);
                 $this->db->where($array);
-                return $this->db->get('tuser')->row();
+                $user = $this->db->get('tuser')->row_array();
+
+                return $user;
             }
 
 
-
         }
+
+
 
 
     }

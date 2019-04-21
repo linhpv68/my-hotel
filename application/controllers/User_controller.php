@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
     /**
      * Created by PhpStorm.
      * User: phung
@@ -14,6 +15,7 @@
             $this->load->model('User_model');
             $this->load->helper(array('form', 'url'));
         }
+        
 
 
         public function login()
@@ -176,6 +178,109 @@
 
         public function edit()
         {
+            $input = $this->input->post();
+            $id = $this->input->get('id');
+
+            if (isset($input) && $input != NULL){
+                /*var_dump($input);
+                exit;*/
+                // 1. Add image
+                /*$input['image'] = '';*/
+                $this->load->helper('form');
+                $files = $_FILES['files'];
+
+                if (isset($files) && $files['name'] != NULL){
+                    $this->load->helper('upload_image_helper');
+                    $results = add_images($files);
+
+                    if (isset($results['upload_data'])) {
+                        $input['image'] = $results['upload_data']['file_name'];
+                    } else {
+                        $user_info = $this->User_model->view($input['id_user']);
+                        $erro = 'Hình ảnh tải lên bị lỗi';
+                        $this->load->view('backend/edit-profile', array(
+                            'notify' => $erro,
+                            'user' => $user_info
+                        ));
+                    }
+                }
+
+                //2. edit user
+                $user_info = $this->User_model->view($input['id_user']);
+                /*var_dump($user_info);
+                echo '<pre>';
+                print_r($input);
+                echo '</pre>';
+                exit;*/
+
+                if ($input['username'] == $user_info['username']){
+
+                    $erro = 'Tên tài khoản đã được sửa dụng.';
+
+                    //Xóa ảnh trên sourec vừa up lên vì lỗi tạo tài khoản
+                    if (isset($files) && $files['name'] != NULL){
+                        delete_image($input['image']);
+                    }
+                    //$user_info = $this->User_model->view($input['id_user']);
+                    $this->load->view('backend/edit-profile', array(
+                        'notify' => $erro,
+                        'user' => $user_info
+                    ));
+
+                }else{
+                    if ($input['password'] == $input['re-password']) {
+                        unset($input['re-password']);
+                        $user = $this->User_model->edit($input);
+
+                        if ($user == false) {
+                            $erro = 'Sửa tài khoản đã không thành công';
+                            //Xóa ảnh trên sourec vừa up lên
+                            if (isset($input['image']) && $input['image'] != NULL){
+                                delete_image($input['image']);
+                            }
+                            $user_info = $this->User_model->view($input['id_user']);
+                            $this->load->view('backend/edit-profile', array(
+                                'notify' => $erro,
+                                'user' => $user_info
+                            ));
+                        } elseif ($user == true) {
+                            $user_info = $this->User_model->view($input['id_user']);
+                            $notify = 'Sửa tài khoản thành công.';
+                            $this->load->view('backend/edit-profile', array(
+                                'notify' => $notify,
+                                'user' => $user_info
+                            ));
+                        }
+                    } else {
+                        $erro = 'Mật Khẩu không khớp! Mời nhập lại mật khẩu.';
+                        //Xóa ảnh trên sourec vừa up lên vì lỗi tạo tài khoản
+                        if (isset($files) && $files['name'] != NULL){
+                            delete_image($input['image']);
+                        }
+                        $user_info = $this->User_model->view($input['id_user']);
+                        $this->load->view('backend/edit-profile', array(
+                            'notify' => $erro,
+                            'user' => $user_info
+                        ));
+                    }
+                }
+
+
+            }else{
+                if (isset($id)&&$id != NULL){
+
+                    $user = $this->User_model->view($id);
+
+                    $this->load->view('backend/edit-profile', array(
+                        'user' => $user
+                    ));
+                }else{
+                    $this->load->helper('url');
+                    redirect('http://localhost/quanlykhachsan/admin');
+                }
+            }
+
+
         }
 
         public function delete($id)
@@ -184,36 +289,22 @@
 
             if (isset($image)) {
                 $this->load->helper('upload_image_helper');
-                $image = $image->image;
-                if ($image != NUll) {
-                    echo $image;
+
+                if ($image['image'] != NUll) {
+                    echo $image['image'];
                     //xóa ảnh
-                    delete_image($image);
+                    delete_image($image['image']);
                 }
                 //xóa user
                 $query = $this->User_model->delete($id);
 
-                if ($query == true){
-//                    $this->get_user();
-//                    $erro = 'Xóa tài khoản thành công.';
-//                    $this->load->view('backend/users.php', array(
-//                        'erro' => $erro,
-//                        'list_users' => $this->get_user()
-//                    ));
+                if ($query == true) {
                     $this->load->helper('url');
                     redirect('http://localhost/quanlykhachsan/view-users');
 
-                }elseif($query == false){
+                } elseif ($query == false) {
                     $this->load->helper('url');
                     redirect('http://localhost/quanlykhachsan/view-users');
-//                    $erro = 'Xóa tài khoản không thành công';
-//
-//                    $list_users = $this->get_user();
-//                    $this->load->view('backend/users.php', array(
-//                        'list_users' => $list_users,
-//                        'erro' => $erro
-//
-//                    ));
                 }
 
             }
