@@ -1,5 +1,6 @@
 	Bản Mô Tả
-Đề tài: Quản Lý Khách Sạn
+Website Đặt phòng-Quản Lý Khách Sạn
+
 I, Tính năng chính 
 1)	Đặt phòng  
 2)	Hủy phòng  
@@ -17,6 +18,7 @@ a)	Thông báo tới chủ khách sạn thông tin người thuê và phòng thu
 b)	 2 lựa chọn đồng ý hoặc không đồng ý cho thuê.
 6)	Thêm sửa xóa User (Người dùng) :
 a)	Thêm các thông tin gồm: HoTen, Sdt, TenTaiKhoan , MatKhau, DiaChiEmai, LoaiTaiKhoan, NgaySinh.
+
 II, Phân cấp quyền người sử dụng 
 1.	User + Ẩn danh: 
 a.	Đặt phòng 
