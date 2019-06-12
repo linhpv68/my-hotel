@@ -4,6 +4,7 @@ Website Đặt phòng-Quản Lý Khách Sạn
 I, Tính năng chính 
 1)	Đặt phòng  :
 a) 	Gửi Email sau khi khách đặt phòng thành công.
+b)	Maneger xác nhận giao dịch sa
 2)	Hủy phòng  
 3)	Tìm phòng :
 
