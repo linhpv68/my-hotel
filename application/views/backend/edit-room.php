@@ -1,41 +1,24 @@
-<?php
-/*  echo '<pre>';
-    echo 'Thông tin Sua Phong'.'<br>';
-        print_r($RoomsInfos);
-        echo $RoomsInfos[0]['idPhong'];
-    echo '</pre>';
-    exit;*/
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Vntrip Business</title>
-		<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
-		<meta name="author" content="Pike Web Development - https://www.pikephp.com">
+	<title>Sửa Phòng</title>
+	<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
+	<meta name="author" content="Pike Web Development - https://www.pikephp.com">
 
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="/template/backend/assets/images/vntrip_favicon.png">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../template/backend/assets/images/logo_factory.png">
 
-		<!-- Bootstrap CSS -->
-		<link href="/template/backend/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<!-- Bootstrap CSS -->
+	<link href="../template/backend/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-		<!-- Font Awesome CSS -->
-		<link href="/template/backend/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<!-- Font Awesome CSS -->
+	<link href="../template/backend/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
-		<!-- Custom CSS -->
-		<link href="/template/backend/assets/css/style.css" rel="stylesheet" type="text/css" />
-
-        <!-- BEGIN CSS for this page -->
-        <link rel="stylesheet" href="/template/backend/assets/plugins/trumbowyg/ui/trumbowyg.min.css">
-        <!-- END CSS for this page -->
-        <!-- IMG -->
-        <link href="/template/backend/assets/plugins/jquery.filer/css/jquery.filer.css" rel="stylesheet" />
-        <link href="/template/backend/assets/plugins/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet" />
-        <!-- END IMG -->
+	<!-- Custom CSS -->
+	<link href="../template/backend/assets/css/style.css" rel="stylesheet" type="text/css"/>
 
 
 </head>
@@ -44,538 +27,181 @@
 
 <div id="main">
 
-	<!-- top bar navigation -->
-    <div class="headerbar">
+	<?php $this->load->view('backend/sidebar') ?>
 
-        <!-- LOGO -->
-        <div class="headerbar-left">
-            <a href="http://vntrip.com/index.php/Admin_controller/home" class="logo"><img alt="Logo" src="/template/backend/assets/images/logo-vntrip.svg" /> <span>Admin</span></a>
-        </div>
 
-        <nav class="navbar-custom">
-
-            <ul class="list-inline float-right mb-0">
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-question-circle"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small>Help and Support</small></h5>
-                        </div>
-
-                        <!-- item-->
-                        <a target="_blank" href="https://www.pikeadmin.com" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Do you want custom development to integrate this theme?</b>
-                                <span>Contact Us</span>
-                            </p>
-                        </a>
-
-                        <!-- All-->
-                        <a title="Clcik to visit Pike Admin Website" target="_blank" href="https://www.pikeadmin.com" class="dropdown-item notify-item notify-all">
-                            <i class="fa fa-link"></i> Visit Pike Admin Website
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-envelope-o"></i><span class="notif-bullet"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small><span class="label label-danger pull-xs-right">12</span>Contact Messages</small></h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Jokn Doe</b>
-                                <span>New message received</span>
-                                <small class="text-muted">2 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Michael Jackson</b>
-                                <span>New message received</span>
-                                <small class="text-muted">15 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <p class="notify-details ml-0">
-                                <b>Foxy Johnes</b>
-                                <span>New message received</span>
-                                <small class="text-muted">Yesterday, 13:30</small>
-                            </p>
-                        </a>
-
-                        <!-- All-->
-                        <a href="#" class="dropdown-item notify-item notify-all">
-                            View All
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <i class="fa fa-fw fa-bell-o"></i><span class="notif-bullet"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5><small><span class="label label-danger pull-xs-right">5</span>Allerts</small></h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-faded">
-                                <img src="/template/backend/assets/images/avatars/avatar2.png" alt="img" class="rounded-circle img-fluid">
-                            </div>
-                            <p class="notify-details">
-                                <b>John Doe</b>
-                                <span>User registration</span>
-                                <small class="text-muted">3 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-faded">
-                                <img src="/template/backend/assets/images/avatars/avatar3.png" alt="img" class="rounded-circle img-fluid">
-                            </div>
-                            <p class="notify-details">
-                                <b>Michael Cox</b>
-                                <span>Task 2 completed</span>
-                                <small class="text-muted">12 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="#" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-faded">
-                                <img src="/template/backend/assets/images/avatars/avatar4.png" alt="img" class="rounded-circle img-fluid">
-                            </div>
-                            <p class="notify-details">
-                                <b>Michelle Dolores</b>
-                                <span>New job completed</span>
-                                <small class="text-muted">35 minutes ago</small>
-                            </p>
-                        </a>
-
-                        <!-- All-->
-                        <a href="#" class="dropdown-item notify-item notify-all">
-                            View All Allerts
-                        </a>
-
-                    </div>
-                </li>
-
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="/template/backend/assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <!--<h5 class="text-overflow"><small>Hello, admin</small> </h5>-->
-                            <?php  $data = $this->session->userdata('userInfo')?>
-                            <h5 class="text-overflow"><small><?=$data['userName']?></small> </h5>
-                        </div>
-
-                        <!-- item-->
-                        <a href="pro-profile.php" class="dropdown-item notify-item">
-                            <i class="fa fa-user"></i> <span>Hồ sơ</span>
-                        </a>
-
-                        <!-- item-->
-                        <a href="http://vntrip.com/index.php/Admin_controller/logout" class="dropdown-item notify-item">
-                            <i class="fa fa-power-off"></i> <span>Đăng Xuất</span>
-                        </a>
-                    </div>
-                </li>
-
-            </ul>
-
-            <ul class="list-inline menu-left mb-0">
-                <li class="float-left">
-                    <button class="button-menu-mobile open-left">
-                        <i class="fa fa-fw fa-bars"></i>
-                    </button>
-                </li>
-            </ul>
-
-        </nav>
-
-    </div>
-	<!-- End Navigation -->
-
-    <!-- Left Sidebar -->
-    <div class="left main-sidebar">
-
-        <div class="sidebar-inner leftscroll">
-
-            <div id="sidebar-menu">
-
-                <ul>
-
-                    <li class="submenu">
-                        <a href="http://vntrip.com/index.php/Admin_controller/home"><i class="fa fa-fw fa-bars"></i><span>
-									Dashboard </span> </a>
-                    </li>
-
-                    <li class="submenu">
-                        <a href="#" class="active"><i class="fa fa-fw fa-table"></i> <span> Quản lý Khách sạn
-								</span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="http://vntrip.com/index.php/Hotel_controller/add/add_hotel" class="active">Thêm
-                                    khách sạn</a></li>
-                            <li><a href="http://vntrip.com/index.php/Room_controller/add/add_room">Thêm phòng</a></li>
-                            <li><a href="http://vntrip.com/index.php/Hotel_controller/view_hotel">Danh sách khách
-                                    sạn</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> Quản lý Người dùng </span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="http://vntrip.com/index.php/Admin_controller/users">Người dùng</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="submenu">
-                        <a href="#"><span class="label radius-circle bg-danger float-right">20</span><i class="fa fa-fw fa-file-text-o"></i>
-                            <span> Yêu Cầu Đặt Phòng </span> <span class="menu-arrow"></span></a>
-                    </li>
-
-                    <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-copy"></i><span> Quản Lý doanh thu </span></a>
-                    </li>
-
-                </ul>
-
-                <div class="clearfix"></div>
-
-            </div>
-
-            <div class="clearfix"></div>
-
-        </div>
-
-    </div>
-    <!-- End Sidebar -->
-
-    <!-- content-page -->
-    <div class="content-page">
+	<div class="content-page">
 
 		<!-- Start content -->
-        <div class="content">
-
+		<div class="content">
 			<div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="breadcrumb-holder">
-                            <h1 class="main-title float-left">Chỉnh sửa Phòng</h1>
-                            <ol class="breadcrumb float-right">
-                                <li class="breadcrumb-item">Dashboard</li>
-                                <li class="breadcrumb-item active">Chỉnh Sửa</li>
-                            </ol>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
-                <div class="row">
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="breadcrumb-holder">
+							<h1 class="main-title float-left">Phòng khách sạn</h1>
+							<ol class="breadcrumb float-right">
+								<li class="breadcrumb-item">Trang chủ</li>
+								<li class="breadcrumb-item active">Phòng khách sạn</li>
+							</ol>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+				<!-- end row -->
+				<div class="row">
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <h3><i class="fa fa-table"></i>Thêm mới</h3>
-                            </div>
-                            <div class="card-body">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                    <div class="card mb-3">
-                                        <div class="card-header">
-                                            <h3><i class="fa fa-hand-pointer-o"></i> Thông Tin</h3>
+						<div class="card mb-3">
 
-                                        </div>
+							<div class="card-header">
+								<div>
+                                    <span style="color: #761c19">
+                                        <?php
+										if (isset($erro)) {
+											echo $erro;
+										}
+										?>
+                                    </span>
+								</div>
 
-                                        <div class="card-body">
-                                            <span><?php if(isset($errors)){echo $errors;}?></span>
-                                            <!--<form method="post" action="http://vntrip.com/index.php/Room_controller/add" enctype="multipart/form-data" accept-charset="utf-8">-->
-                                            <form method="post" action="http://vntrip.com/index.php/Room_controller/edit_img" enctype="multipart/form-data" accept-charset="utf-8">
-                                                <div class="form-group">
-                                                    <label>Chọn Khách sạn:</label>
-                                                    <select class="form-control select2" name="idKS" id="idKS">
-                                                        <optgroup>
-                                                            <?php foreach ($list_KhachSan as $list_KhachSan):?>
-                                                            <option value="<?php echo $list_KhachSan['idKhachSan']?>"><?php echo $list_KhachSan['tenKS']?></option>
-                                                            <?php endforeach; ?>
-                                                        <optgroup>
-                                                    </select>
+								<h3><i class="fa"></i>Sửa</h3>
+							</div>
+							<!-- end card-header -->
 
+							<div class="card-body">
+								<form class="theme-form" method="post" action="edit-room">
+									<div class="modal-body">
+										<input class="form-control" name="id_hotel" type="hidden"
+											   value="<?= $idHotel ?>">
+										<input class="form-control" name="id_room" type="hidden"
+											   value="<?= $roomDetail['id_room'] ?>">
+										<div class="col-lg-9 col-xl-9">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="form-group">
+														<label>Kiểu loại phòng</label>
+														<select name="id_type" id="id_type" class="form-control"
+																required>
+															<?php foreach ($roomType as $roomType): ?>
+																<option
+																	value="<?= $roomType['id_type'] ?>"><?= $roomType['room_name'] ?></option>
+															<?php endforeach; ?>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>Diện tích phòng: </label>
+														<input class="form-control" name="area_room" type="text"
+															   value="<?= $roomDetail['area_room'] ?>" required/>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>Số lượng người ở: </label>
+														<input class="form-control" name="people" type="text"
+															   value="<?= $roomDetail['people'] ?>" required/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>Giá Phòng: </label>
+														<input class="form-control" name="prices_room" type="text"
+															   value="<?= $roomDetail['prices_room'] ?>" required/>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label>Số Lượng Phòng: </label>
+														<input class="form-control" name="status" type="text"
+															   value="<?= $roomDetail['status'] ?>" required/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="form-group">
+														<label>Số Giường</label>
+														<input class="form-control" name="beds"
+															   type="text"
+															   value="<?= $roomDetail['beds'] ?>" required/>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="form-group">
+														<label>Thiết bị trong phòng: </label>
+														<input class="form-control" name="device_hotel" type="text"
+															   value="<?= $roomDetail['device_hotel'] ?>" required/>
+													</div>
+												</div>
+												<div class="col-lg-12">
+													<div class="form-group">
+														<label>Mô tả: </label>
+														<input class="form-control" name="describe_hotel" type="text"
+															   value="<?= $roomDetail['describe_hotel'] ?>" required/>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-primary">Sửa</button>
+										</div>
 
-                                                    <?php foreach ($RoomsInfos as $RoomsInfo):?>
-                                                    <input name="idPhong" type="hidden" class="form-control" id="idPhong" value="<?=$RoomsInfo['idPhong']?>">
-                                                    <label>Tên Loại Phòng:</label>
-                                                    <input name="tenLoaiPhong" type="text" class="form-control" id="tenLoaiPhong" value="<?=$RoomsInfo['tenLoaiPhong']?>">
-                                                    <label>Thuộc Tầng:</label>
-                                                    <input name="Tang" type="text" class="form-control" id="Tang" value="<?=$RoomsInfo['Tang']?>">
-                                                    <br>
-                                                    <label> Giá:</label>
-                                                    <input name="gia" type="number" class="form-control" id="gia" value="<?=$RoomsInfo['gia']?>">
-                                                    <br>
-                                                    <label for="example4">
-                                                        Tình Trạng:
-                                                    </label>
-                                                    <select class="form-control select2" name="TinhTrang" id="TinhTrang">
-                                                        <optgroup>
-                                                            <option value="0">Còn phòng</option>
-                                                            <option value="1">Đã hết</option>
-                                                            <option value="2">Khác</option>
-                                                        <optgroup>
-                                                    </select>
-                                                    <label> Hình ảnh:</label>
-                                                    <input type="file" name="files[]" id="HinhAnh" multiple="multiple">
-                                                    <label> Số Giường:</label>
-                                                    <input name="soGiuong" type="text" class="form-control" id="soGiuong" value="<?=$RoomsInfo['soGiuong']?>">
-                                                    <br>
-                                                    <label> Diện tích:</label>
-                                                    <input name="dienTich" type="number" class="form-control" id="dienTich" value="<?=$RoomsInfo['dienTich']?>">
-                                                    <br>
-                                                    <label> Thiết bị có trong phòng:</label>
-                                                    <input name="thietBi" type="text" class="form-control" id="thietBi" value="<?=$RoomsInfo['thietBi']?>">
+								</form>
+							</div>
+							<!-- end card-body -->
 
-                                                    <br>
-                                                    <label> Mô tả thêm:</label>
-                                                    <textarea rows="3" class="form-control editor" name="moTaChiTiet" id="moTaChiTiet" value="<?=$RoomsInfo['moTaChiTiet']?>"></textarea>
+						</div>
+						<!-- end card -->
 
-                                                    <br>
-                                                    <?php endforeach; ?>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">
-                                                    Sửa
-                                                </button>
-                                            </form>
+					</div>
+					<!-- end col -->
 
-                                        </div>
-                                    </div><!-- end card-->
-                                </div>
-                            </div>
-                        </div><!-- end card-->
-                    </div>
+				</div>
+				<!-- end row -->
 
-                </div>
-
-
-            </div>
+			</div>
 			<!-- END container-fluid -->
 
 		</div>
 		<!-- END content -->
 
-    </div>
+	</div>
 	<!-- END content-page -->
 
 	<footer class="footer">
 		<span class="text-right">
-		Copyright <a target="_blank" href="#">Your Website</a>
+		Copyright <a target="_blank" href="home">My hotel</a>
 		</span>
 		<span class="float-right">
-		Powered by <a target="_blank" href=""><b> Linh Phùng</b></a>
+		Powered by <a target="_blank" href="https://www.facebook.com/linh.pv68"><b>Linh Phùng</b></a>
 		</span>
 	</footer>
 
 </div>
 <!-- END main -->
 
-<script src="/template/backend/assets/js/modernizr.min.js"></script>
-<script src="/template/backend/assets/js/jquery.min.js"></script>
-<script src="/template/backend/assets/js/moment.min.js"></script>
+<script src="../template/backend/assets/js/modernizr.min.js"></script>
+<script src="../template/backend/assets/js/jquery.min.js"></script>
+<script src="../template/backend/assets/js/moment.min.js"></script>
 
-<script src="/template/backend/assets/js/popper.min.js"></script>
-<script src="/template/backend/assets/js/bootstrap.min.js"></script>
+<script src="../template/backend/assets/js/popper.min.js"></script>
+<script src="../template/backend/assets/js/bootstrap.min.js"></script>
 
-<script src="/template/backend/assets/js/detect.js"></script>
-<script src="/template/backend/assets/js/fastclick.js"></script>
-<script src="/template/backend/assets/js/jquery.blockUI.js"></script>
-<script src="/template/backend/assets/js/jquery.nicescroll.js"></script>
+<script src="../template/backend/assets/js/detect.js"></script>
+<script src="../template/backend/assets/js/fastclick.js"></script>
+<script src="../template/backend/assets/js/jquery.blockUI.js"></script>
+<script src="../template/backend/assets/js/jquery.nicescroll.js"></script>
 
 <!-- App js -->
-<script src="/template/backend/assets/js/pikeadmin.js"></script>
-
-<!-- BEGIN Java Script for this page -->
-
-<script src="/template/backend/assets/plugins/trumbowyg/trumbowyg.min.js"></script>
-<script>
-    $(document).ready(function () {
-        'use strict';
-        $('.editor').trumbowyg();
-    });
-</script>
-<!-- END Java Script for this page -->
-<!--Upload IMG-->
-<script src="/template/backend/assets/plugins/jquery.filer/js/jquery.filer.min.js"></script>
-<script>
-    $("#HinhAnh").filer({
-        limit: null,
-        maxSize: null,
-        extensions: null,
-        changeInput: '<div class="jFiler-input-dragDrop"><div class="jFiler-input-inner"><div class="jFiler-input-icon"><i class="icon-jfi-cloud-up-o"></i></div><div class="jFiler-input-text"><h3>Kéo và thả tập tin ở đây</h3><span>(dung lượng nhỏ hơn 2MB)</span> <span style="display:inline-block; margin: 15px 0"></span></div><a class="jFiler-input-choose-btn btn btn-custom">Chọn ảnh</a></div></div>',
-        showThumbs: true,
-        theme: "dragdropbox",
-        templates: {
-            box: '<ul class="jFiler-items-list jFiler-items-grid"></ul>',
-            item: '<li class="jFiler-item">\
-                        <div class="jFiler-item-container">\
-                            <div class="jFiler-item-inner">\
-                                <div class="jFiler-item-thumb">\
-                                    <div class="jFiler-item-status"></div>\
-                                    <div class="jFiler-item-info">\
-                                        <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
-                                        <span class="jFiler-item-others">{{fi-size2}}</span>\
-                                    </div>\
-                                    {{fi-image}}\
-                                </div>\
-                                <div class="jFiler-item-assets jFiler-row">\
-                                    <ul class="list-inline pull-left">\
-                                        <li>{{fi-progressBar}}</li>\
-                                    </ul>\
-                                    <ul class="list-inline pull-right">\
-                                        <li><a class="icon-jfi-trash jFiler-item-trash-action">Xóa</a></li>\
-                                    </ul>\
-                                </div>\
-                            </div>\
-                        </div>\
-                    </li>',
-            itemAppend: '<li class="jFiler-item">\
-                            <div class="jFiler-item-container">\
-                                <div class="jFiler-item-inner">\
-                                    <div class="jFiler-item-thumb">\
-                                        <div class="jFiler-item-status"></div>\
-                                        <div class="jFiler-item-info">\
-                                            <span class="jFiler-item-title"><b title="{{fi-name}}">{{fi-name | limitTo: 25}}</b></span>\
-                                            <span class="jFiler-item-others">{{fi-size2}}</span>\
-                                        </div>\
-                                        {{fi-image}}\
-                                    </div>\
-                                    <div class="jFiler-item-assets jFiler-row">\
-                                        <ul class="list-inline pull-left">\
-                                            <li><span class="jFiler-item-others">{{fi-icon}}</span></li>\
-                                        </ul>\
-                                        <ul class="list-inline pull-right">\
-                                            <li><a class="icon-jfi-trash" href="http://vntrip.com/index.php/Room_controller/delete_img?file_name={{fi-name}}&id=<?=$RoomsInfos[0]['idPhong']?>">Xóa {{fi-idPhong}}</a></li>\
-                                        </ul>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </li>',
-            progressBar: '<div class="bar"></div>',
-            itemAppendToEnd: false,
-            removeConfirmation: true,
-            _selectors: {
-                list: '.jFiler-items-list',
-                item: '.jFiler-item',
-                progressBar: '.bar',
-                remove: '.jFiler-item-trash-action'
-            }
-        },
-        dragDrop: {
-            dragEnter: null,
-            dragLeave: null,
-            drop: null,
-        },
-        uploadFile: {
-            /*url: "/template/backend/assets/plugins/jquery.filer/php/upload.php",*/
-            data: null,
-            type: 'POST',
-            enctype: 'multipart/form-data',
-            beforeSend: function(){},
-            success: function(data, el){
-
-                var parent = el.find(".jFiler-jProgressBar").parent();
-                el.find(".jFiler-jProgressBar").fadeOut("slow", function(){
-                    $("<div class=\"jFiler-item-others text-success\"><i class=\"fa fa-plus\"></i>...</div>").hide().appendTo(parent).fadeIn("slow");
-                });
-            },
-            error: function(el){
-                var parent = el.find(".jFiler-jProgressBar").parent();
-                el.find(".jFiler-jProgressBar").fadeOut("slow", function(){
-                    $("<div class=\"jFiler-item-others text-error\"><i class=\"fa fa-minus\"></i> Lỗi</div>").hide().appendTo(parent).fadeIn("slow");
-                });
-            },
-            statusCode: null,
-            onProgress: null,
-            onComplete: null
-        },
-        files: [
-            <?php foreach ($RoomsInfos as $RoomsInfo):?>
-                <?php foreach ($RoomsInfo as $key => $value):?>
-                    <?php if($key === 'HinhAnh'){ ?>
-                        <?php foreach ($value as $hinhanh):?>
-                        {
-                            name: "<?=$hinhanh?>",
-                            size: 145,
-                            type: "image/jpg",
-                            file: "<?='/../uploads/'.$hinhanh?>",
-                            idPhong: "<?=$RoomsInfo['idPhong']?>"
-                        },
-                        <?php endforeach; ?>
-                    <?php }?>
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-            /*{
-                name: "1.jpg",
-                size: 145,
-                type: "image/jpg",
-                file: "/../uploads/Screenshot_(1).png"
-            },*/
-
-        ],
-
-        addMore: false,
-        clipBoardPaste: true,
-        excludeName: null,
-        beforeRender: null,
-        afterRender: null,
-        beforeShow: null,
-        beforeSelect: null,
-        onSelect: null,
-        afterShow: null,
-        onRemove: function(itemEl, file, id, listEl, boxEl, newInputEl, inputEl){
-            var file = file.name;
-            /*$.post('/template/backend/assets/plugins/jquery.filer/php/remove_file.php', {file: file});*/
-            /*$.post('http://vntrip.com/index.php/Room_controller/delete_img', {file: file});*/
-        },
-        onEmpty: null,
-        options: null,
-        captions: {
-            button: "Choose Files",
-            feedback: "Choose files To Upload",
-            feedback2: "files were chosen",
-            drop: "Drop file here to Upload",
-            removeConfirmation: "Bạn muốn xóa file?",
-            errors: {
-                filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
-                filesType: "Only Images are allowed to be uploaded.",
-                filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
-                filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
-            }
-        }
-    });
-</script>
-<!--End Upload IMG-->
+<script src="../template/backend/assets/js/pikeadmin.js"></script>
 
 </body>
 </html>

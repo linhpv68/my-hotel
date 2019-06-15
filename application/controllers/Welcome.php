@@ -20,6 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('fontend/home.php');
+		$this->load->view('frontend/home.php');
 	}
 }

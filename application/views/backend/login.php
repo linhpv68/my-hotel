@@ -1,3 +1,4 @@
+<?php $this->load->helper('url');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,9 +21,6 @@
     <!-- BEGIN CSS for this page -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- END CSS for this page -->
-    <!-- Ajax-->
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-
 </head>
 
 <body class="adminbody">
@@ -32,7 +30,7 @@
     <!-- LOGO -->
     <div class="form-login">
         <div class="headerbar-left">
-            <a href="#" class="logo"><img alt="logo" src="../template/backend/assets/images/logo.png"/></a>
+            <a href="<?=base_url()?>" class="logo"><img alt="logo" src="../template/backend/assets/images/logo.png"/></a>
         </div>
         <form method="post" action="login">
             <div style="background: #ffb9b961;border-radius: 5px;">
@@ -47,7 +45,7 @@
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
             </div>
-            <a href="">Quên mật khẩu</a>
+            <a href="" onclick="forGetPass()">Quên mật khẩu</a>
             <button type="submit" class="btn btn-primary login">Đăng nhập</button>
         </form>
     </div>
@@ -70,47 +68,10 @@
 
 <!-- App js -->
 <script src="../template/backend/assets/js/pikeadmin.js"></script>
-
-<!--ajax-->
-<!--<script type="text/javascript">
-    $(document).ready(function () {
-        $("#login").click(function () {
-            var username = $("#username").val();
-            var password = $("#password").val();
-            console.log("username: "+username);
-            console.log("password: "+password);
-        });
-        /*$("#thanhpho").change(function () {
-            var id = $("#thanhpho").val();
-            // alert(id);
-            $.ajax({
-                url : 'http://localhost/quanlykhachsan/address/quanhuyen',
-                type : 'post',
-                data: {id: id},
-                dataType : 'json',
-                success : function (result){
-                    //console.log(result);
-                    var html = '';
-                    $.each (result, function (key, value){
-                        //console.log(value['name']);
-
-                        html += '<option value="';
-                        html +=value['maqh'];
-                        html +='">';
-                        html +=value['name'];
-                        html +='</option>';
-
-                    });
-                    $('#quanhuyen').html(html);
-
-                }
-            });
-
-        })*/
-
-
-    })
-</script>-->
-
+<script>
+	function forGetPass() {
+		alert('Vui lòng liên hệ hotline để được hỗ trợ.')
+	}
+</script>
 </body>
 </html>

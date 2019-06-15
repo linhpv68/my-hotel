@@ -11,13 +11,23 @@
         public function __construct()
         {
             parent::__construct();
-            $this->load->model('address_model');
+            $this->load->model('Address_model');
         }
+
+		public function thanhpho(){
+			$id = $this->input->post('id');
+
+			if ($id){
+				$data= $this->Address_model->thanhpho();
+				echo json_encode($data);
+			}
+
+		}
 
         public function quanhuyen(){
             $id = $this->input->post('id');
             if ($id){
-                $data= $this->address_model->quanhuyen($id);
+                $data= $this->Address_model->quanhuyen($id);
                 echo json_encode($data);
             }
 
@@ -27,7 +37,7 @@
         public function xaphuong(){
             $id = $this->input->post('id');
             if ($id){
-                $data= $this->address_model->xaphuong($id);
+                $data= $this->Address_model->xaphuong($id);
                 echo json_encode($data);
             }
 

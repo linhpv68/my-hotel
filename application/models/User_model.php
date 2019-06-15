@@ -60,7 +60,9 @@
         public function edit($input)
         {
             $array = array('id_user' => $input['id_user']);
-            $input['password'] = md5($input['password']);
+            if (isset($input['password'])){
+				$input['password'] = md5($input['password']);
+			}
             $this->db->where($array);
             $query = $this->db->update('tuser',$input);
 

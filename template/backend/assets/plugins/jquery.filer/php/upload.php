@@ -7,8 +7,8 @@
         'maxSize' => 10, //Maximum Size of files {null, Number(in MB's)}
         'extensions' => null, //Whitelist for file extension. {null, Array(ex: array('jpg', 'png'))}
         'required' => false, //Minimum one file is required for upload {Boolean}
-        /*'uploadDir' => '../uploads/', //Upload directory {String}*/
-        'uploadDir' => '../../../../../../uploads/', //Upload directory {String}
+        'uploadDir' => '../uploads/', //Upload directory {String}
+//        'uploadDir' => '../../../../../../uploads/', //Upload directory {String}
         'title' => array('name'), //New file name {null, String, Array} *please read documentation in README.md
         'removeFiles' => true, //Enable file exclusion {Boolean(extra for jQuery.filer), String($_POST field name containing json data with file names)}
         'perms' => null, //Uploaded file permisions {null, Number}
@@ -36,9 +36,9 @@
     
     function onFilesRemoveCallback($removed_files){
         foreach($removed_files as $key=>$value){
-            /*$file = '../uploads/' . $value;*/
+            $file = '../uploads/' . $value;
             /*$file = '../../../images/img_hotel/' . $value;*/
-            $file = '../../../../../../uploads/' . $value;
+//            $file = '../../../../../../uploads/' . $value;
             if(file_exists($file)){
                 unlink($file);
             }

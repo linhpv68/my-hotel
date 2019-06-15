@@ -5,7 +5,7 @@ I, Tính năng chính
 1)	Đặt phòng  :
 a) 	Gửi Email sau khi khách đặt phòng thành công.
 b)	Maneger xác nhận giao dịch sau khi khách đặt phòng.
-2)	Hủy phòng  
+2)	Hủy phòng
 3)	Tìm phòng :
 
 a)	Dựa trên địa điểm hoặc tên khách sạn để đưa ra kết quả.

@@ -6,19 +6,19 @@
 
     <title>Danh Sách người dùng</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="template/backend/assets/images/logo_factory.png">
+    <link rel="shortcut icon" href="../template/backend/assets/images/logo_factory.png">
 
     <!-- Switchery css -->
-    <link href="template/backend/assets/plugins/switchery/switchery.min.css" rel="stylesheet"/>
+    <link href="../template/backend/assets/plugins/switchery/switchery.min.css" rel="stylesheet"/>
 
     <!-- Bootstrap CSS -->
-    <link href="template/backend/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../template/backend/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
     <!-- Font Awesome CSS -->
-    <link href="template/backend/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../template/backend/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
     <!-- Custom CSS -->
-    <link href="template/backend/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../template/backend/assets/css/style.css" rel="stylesheet" type="text/css"/>
 
     <!-- BEGIN CSS for this page -->
 
@@ -30,126 +30,7 @@
 
 <div id="main">
 
-    <!-- top bar navigation -->
-    <div class="headerbar">
-
-        <!-- LOGO -->
-        <div class="headerbar-left">
-            <a href="admin" class="logo"><img alt="Logo" src="template/backend/assets/images/logo_factory.png"/>
-                <span style="font: initial;
-                        color: #f1b53d;
-                        font-weight: 600;"
-                >My Hotel</span>
-            </a>
-        </div>
-
-        <nav class="navbar-custom">
-
-            <ul class="list-inline float-right mb-0">
-                <?php $data = $this->session->userdata('userInfoAdmin') ?>
-                <?php if ($data['image'] == NULL) {
-                    $data['image'] = 'admin.jpg';
-                } ?>
-                <li class="list-inline-item dropdown notif">
-                    <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
-                       aria-haspopup="false" aria-expanded="false">
-                        <img src="assets/images/<?= $data['image'] ?>" alt="Profile image"
-                             class="avatar-rounded">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <!--<h5 class="text-overflow"><small>Hello, admin</small> </h5>-->
-                            <h5 class="text-overflow">
-                                <small><?= $data['username'] ?></small>
-                            </h5>
-                        </div>
-                        <!-- item-->
-                        <a href="edit-user?id=<?=$data['id_user'] ?>" class="dropdown-item notify-item">
-                            <i class="fa fa-user"></i> <span>Cá nhân</span>
-                        </a>
-                        <a href="admin/logout" class="dropdown-item notify-item">
-                            <i class="fa fa-power-off"></i> <span>Đăng Xuất</span>
-                        </a>
-                    </div>
-                </li>
-
-            </ul>
-
-            <ul class="list-inline menu-left mb-0">
-                <li class="float-left">
-                    <button class="button-menu-mobile open-left">
-                        <i class="fa fa-fw fa-bars"></i>
-                    </button>
-                </li>
-            </ul>
-
-        </nav>
-
-    </div>
-    <!-- End Navigation -->
-
-    <!-- Left Sidebar -->
-    <div class="left main-sidebar">
-
-        <div class="sidebar-inner leftscroll">
-
-            <div id="sidebar-menu">
-
-                <ul>
-
-                    <li class="submenu">
-                        <a class="active" href="admin">
-                            <i class="fa fa-fw fa-bars"></i>
-                            <span> Dashboard </span>
-                        </a>
-                    </li>
-
-                    <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-table"></i> <span> Quản lý Khách sạn </span> <span
-                                    class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="admin/hotel">khách sạn</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="submenu">
-                        <a href="#"><i class="fa fa-fw fa-tv"></i> <span> Quản lý Người dùng </span> <span
-                                    class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="view-users">Người dùng</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="submenu">
-                        <a href="#">
-                            <span class="label radius-circle bg-danger float-right">20</span>
-                            <i class="fa fa-fw fa-file-text-o"></i>
-                            <span> Yêu Cầu Đặt Phòng </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                    </li>
-
-                    <li class="submenu">
-                        <a href="#">
-                            <i class="fa fa-fw fa-copy"></i>
-                            <span> Quản Lý doanh thu </span>
-                        </a>
-                    </li>
-
-                </ul>
-
-                <div class="clearfix"></div>
-
-            </div>
-
-            <div class="clearfix"></div>
-
-        </div>
-
-    </div>
-    <!-- End Sidebar -->
-
+   <?php $this->load->view('backend/sidebar')?>
 
     <div class="content-page">
 
@@ -311,8 +192,8 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label>Ảnh đại diện (không bắt buộc):</label> <br/>
-                                                        <input type="file" name="files" size="20"/>
+                                                        <label>Ảnh đại diện (bắt buộc):</label> <br/>
+                                                        <input type="file" name="files" size="20" required/>
                                                     </div>
 
                                                 </div>
@@ -355,7 +236,7 @@
                                                 <span style="float: left; margin-right:10px;">
                                                     <img alt="image"
                                                          style="max-width:40px; height:auto;"
-                                                         src="assets/images/<?= $list_user['image'] ?>">
+                                                         src="../assets/images/<?= $list_user['image'] ?>">
                                                 </span>
                                                     <strong><?= $list_user['username'] ?></strong> <br/>
                                                     <small><?= $list_user['emailaddress'] ?></small>
@@ -430,22 +311,22 @@
 </div>
 <!-- END main -->
 
-<script src="template/backend/assets/js/modernizr.min.js"></script>
-<script src="template/backend/assets/js/jquery.min.js"></script>
-<script src="template/backend/assets/js/moment.min.js"></script>
+<script src="../template/backend/assets/js/modernizr.min.js"></script>
+<script src="../template/backend/assets/js/jquery.min.js"></script>
+<script src="../template/backend/assets/js/moment.min.js"></script>
 
-<script src="template/backend/assets/js/popper.min.js"></script>
-<script src="template/backend/assets/js/bootstrap.min.js"></script>
+<script src="../template/backend/assets/js/popper.min.js"></script>
+<script src="../template/backend/assets/js/bootstrap.min.js"></script>
 
-<script src="template/backend/assets/js/detect.js"></script>
-<script src="template/backend/assets/js/fastclick.js"></script>
-<script src="template/backend/assets/js/jquery.blockUI.js"></script>
-<script src="template/backend/assets/js/jquery.nicescroll.js"></script>
-<script src="template/backend/assets/js/jquery.scrollTo.min.js"></script>
-<script src="template/backend/assets/plugins/switchery/switchery.min.js"></script>
+<script src="../template/backend/assets/js/detect.js"></script>
+<script src="../template/backend/assets/js/fastclick.js"></script>
+<script src="../template/backend/assets/js/jquery.blockUI.js"></script>
+<script src="../template/backend/assets/js/jquery.nicescroll.js"></script>
+<script src="../template/backend/assets/js/jquery.scrollTo.min.js"></script>
+<script src="../template/backend/assets/plugins/switchery/switchery.min.js"></script>
 
 <!-- App js -->
-<script src="template/backend/assets/js/pikeadmin.js"></script>
+<script src="../template/backend/assets/js/pikeadmin.js"></script>
 
 <!-- BEGIN Java Script for this page -->
 
