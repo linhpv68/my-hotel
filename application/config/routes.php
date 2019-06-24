@@ -55,21 +55,18 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['file'] = 'user_controller/file';
-
-
 //User_Controller
 $route['login'] = 'user_controller/login';
 $route['register'] = 'user_controller/register';
 $route['logout'] = 'user_controller/logout';
 
 $route['admin/add-user'] = 'user_controller/add';
-
 $route['admin/edit-user']['GET'] = 'User_controller/edit';
 $route['admin/edit-user']['POST'] = 'User_controller/edit';
-
 $route['admin/delete-user/(:num)'] = 'user_controller/delete/$1';
 $route['admin/view-users'] = 'user_controller/view';
+
+$route['api/edit-user']['GET'] ='User_controller/edit_api';
 
 //Admin_controller
 $route['admin/login'] = 'Admin_controller/login';
@@ -140,6 +137,7 @@ $route['admin/edit-deal']['GET'] = 'Deal_controller/edit';
 $route['admin/edit-deal']['POST'] = 'Deal_controller/edit';
 $route['edit-history']['GET'] = 'Deal_controller/edit_history';
 $route['delete-history']['GET'] = 'Deal_controller/delete_history';
+$route['admin/edit-number-room-api']['POST'] = 'Deal_controller/edit_number_room_api';
 
 $route['email']= 'Email_controller/index';
 $route['email/sendEmail']['POST']= 'Email_controller/sendEmail';

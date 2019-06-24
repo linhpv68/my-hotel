@@ -97,6 +97,26 @@
 
         }
 
+        public function  edit_api($id,$data){
+
+			if (isset($data['password'])){
+				$array = array(
+					'id_user' => $id,
+					'password' =>md5($data['password'])
+				);
+
+				$data['password'] = md5($data['new_password']);
+				unset($data['new_password']);
+
+			}else{
+				$array = array('id_user' => $id);
+			}
+			$this->db->where($array);
+			$query = $this->db->update('tuser',$data);
+
+			return $query;
+		}
+
 
 
 

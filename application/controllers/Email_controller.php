@@ -24,9 +24,9 @@ class Email_controller extends CI_Controller
 		$this->load->library('email');
 
 		$from = $this->config->item('smtp_user');
-		$to =$email_address;// $this->input->post('to');
-		$subject = "[My Hotel] Notification Sucessfuly";///$this->input->post('subject');
-		$message = "Your has Sucessfuly booking hotel!";//$this->input->post('message');
+		$to = $email_address;    //$this->input->post('to');
+		$subject = "[My Hotel] Notification Sucessfuly";    //$this->input->post('subject');
+		$message = "Your has Sucessfuly booking hotel!";    //$this->input->post('message');
 
 		$this->email->set_newline("\r\n");
 		$this->email->from($from);
@@ -40,10 +40,6 @@ class Email_controller extends CI_Controller
 			//show_error($this->email->print_debugger());
 			echo json_encode('Unable to send notification email.');
 		}
-
-
-		/*echo 'ok';
-		exit;*/
 	}
 
 

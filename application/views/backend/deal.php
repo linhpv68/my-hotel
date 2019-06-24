@@ -314,8 +314,8 @@
 			var input = $("form").serializeArray();
 			var email_address;
 			var status_deal;
+			var id_room;
 
-			console.log(input);
 
 			input.forEach(function (item) {
 				if (item.name == "emailaddress") {
@@ -323,6 +323,9 @@
 				}
 				if (item.name == "status_deal") {
 					status_deal = item.value;
+				}
+				if (item.name == "id_room") {
+					id_room = item.value;
 				}
 			});
 
@@ -333,10 +336,23 @@
 				dataType: 'json',
 				success: function (result) {
 					if (result == true) {
+						console.log(result);
+						console.log(status_deal);
+
 						if (status_deal == 1) {
-							console.log('ok');
+							console.log('send email');
 							sendEmail(email_address);
 						}
+						;
+						if (status_deal == 2) {
+							edit_number_room(id_room);
+						}
+						;
+						if (status_deal == 3) {
+							edit_number_room(id_room);
+						}
+
+
 						swal("Thành công!", "Bạn đã thay đổi thông tin thành công!", "success").then(function () {
 							location.href = '<?=base_url() . 'admin/deal'?>';
 						});
@@ -357,7 +373,7 @@
 		$.ajax({
 			url: '<?=base_url()?>email/sendEmail',
 			type: 'post',
-			data: {email_address:email_address},
+			data: {email_address: email_address},
 			dataType: 'json',
 			success: function (result) {
 				console.log(result);
@@ -451,11 +467,21 @@
 		});
 	}
 
-	function deleteRecord(RecordId, RecordName) {
-		//if (confirm('Bạn có muốn xóa giao dịch của phòng ' + RecordName + ' này?')) {
-		//	window.location.href = '<?//=base_url()?>//' + 'admin/delete-deal?id=' + RecordId;
-		//}
+	function edit_number_room(id) {
+		$.ajax({
+			url: '<?=base_url()?>admin/edit-number-room-api',
+			type: 'post',
+			data: {id: id},
+			dataType: 'json',
+			success: function (result) {
+				console.log(result);
+				console.log(id)
+			}
+		});
 
+	}
+
+	function deleteRecord(RecordId, RecordName) {
 		swal({
 			title: "Xác nhận?",
 			text: 'Bạn có muốn xóa giao dịch của phòng ' + RecordName + ' này?',

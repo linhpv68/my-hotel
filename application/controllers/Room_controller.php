@@ -24,7 +24,7 @@ class Room_controller extends CI_Controller
 		$result = $this->Room_model->add($input);
 		if($result == TRUE){
 			$this->load->helper('url');
-			redirect('http://127.0.0.1/quanlykhachsan/admin/room?id='.$input['id_hotel']);
+			redirect(base_url().'admin/room?id='.$input['id_hotel']);
 		}else{
 			$listRoom = $this->Room_model->view($input['id_hotel']);
 			$this->load->view('backend/view-room', array(
@@ -54,7 +54,7 @@ class Room_controller extends CI_Controller
 			$result = $this->Room_model->edit($input);
 			if ($result == TRUE){
 				$this->load->helper('url');
-				redirect('http://127.0.0.1/quanlykhachsan/admin/room?id='.$input['id_hotel']);
+				redirect(base_url().'admin/room?id='.$input['id_hotel']);
 
 			}else{
 				$roomType = $this->Room_model->getRoomType($input['id_hotel']);
@@ -87,7 +87,7 @@ class Room_controller extends CI_Controller
 		$query =  $this->Room_model->delete($input['idRoom']);
 		if ($query == TRUE){
 			$this->load->helper('url');
-			redirect('http://127.0.0.1/quanlykhachsan/admin/room?id='.$input['idHotel']);
+			redirect(base_url().'admin/room?id='.$input['idHotel']);
 
 		}else{
 			$listRoom = $this->Room_model->view($input['idHotel']);

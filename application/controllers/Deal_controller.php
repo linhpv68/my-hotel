@@ -1,5 +1,5 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Deal_controller extends CI_Controller
 {
@@ -13,9 +13,14 @@ class Deal_controller extends CI_Controller
 	public function add()
 	{
 		$input = $this->input->post();
+
 		$add = $this->Deal_model->add($input);
 		if ($add == TRUE) {
 			echo 'success';
+
+			// trừ số lượng phòng.
+			$this->edit_number_room($input['id_room']);
+
 
 			$ss_name = $this->session->userdata('userInfo');
 
@@ -121,40 +126,54 @@ class Deal_controller extends CI_Controller
 		echo json_encode($listDeals);
 	}
 
-	/*public function edit_api()
+	public function edit_number_room($id_room)
 	{
 
-	}*/
+		//lấy số phòng hiện tại
 
-	/*public function sendEmail($email)
+		$this->load->model('Room_model');
+		$view = $this->Room_model->getRoom($id_room);
+		$amount = $view['status'];
+		$amount = $amount - 1;
+		//tiến hành trừ
+		$data = array(
+			'id_room' => $id_room,
+			'status' => $amount
+		);
+		$result = $this->Room_model->edit($data);
+
+
+		return $result;
+
+	}
+
+	public function edit_number_room_api()
 	{
-		$this->load->library('email');
-		// Cấu hình
-		$config['protocol'] = 'sendmail';
-		$config['charset'] = 'utf-8';
-		$config['mailtype'] = 'html';
-		$config['wordwrap'] = TRUE;
-		$this->email->initialize($config);
+		$id = $this->input->post('id');
+		if (isset($id) && $id != null) {
+			//lấy số phòng hiện tại
 
-		//cau hinh email va ten nguoi gui
-		$this->email->from('linh.pv68@gmail.com', 'Phùng Văn Linh');
-		//cau hinh nguoi nhan
-		$this->email->to($email);
-
-		$this->email->subject('Successful transaction.');
-		$this->email->message('Your transaction has been successful. Thank you for using our service.');
-
-		//dinh kem file
-//		$this->email->attach('/path/to/photo1.jpg');
-		//thuc hien gui
-		if (!$this->email->send()) {
-			// Generate error
-			echo $this->email->print_debugger();
-			exit;
-		} else {
-			//echo 'Gửi email thành công';
+			$this->load->model('Room_model');
+			$view = $this->Room_model->getRoom($id);
+			$amount = $view['status'];
+			$amount = $amount + 1;
+			//tiến hành cộng
+			$data = array(
+				'id_room' => $id,
+				'status' => $amount
+			);
+			$result = $this->Room_model->edit($data);
+			return $result;
 		}
 
+		return false;
+
+
+	}
+
+
+	/*public function edit_api()
+	{
 
 	}*/
 

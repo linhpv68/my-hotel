@@ -24,7 +24,7 @@ class Admin_controller extends CI_Controller
 //			redirect('admin/home');
 		} else {
 			$this->load->helper('url');
-			redirect('http://127.0.0.1/quanlykhachsan/admin/login');
+			redirect(base_url().'admin/login');
 		}
 	}
 
@@ -35,7 +35,7 @@ class Admin_controller extends CI_Controller
 
 		if ($data != NULL){
 			$this->load->helper('url');
-			redirect('http://127.0.0.1/quanlykhachsan/admin/home');
+			redirect(base_url().'admin/home');
 		}
 		else{
 			if (isset($input['username'])) {
@@ -51,7 +51,7 @@ class Admin_controller extends CI_Controller
 					$userdata = $user;
 					$this->session->set_userdata('userInfoAdmin', $userdata);
 					$this->load->helper('url');
-					redirect('http://127.0.0.1/quanlykhachsan/admin/home');
+					redirect(base_url().'admin/home');
 				} else {
 					$erro = 'Tài khoản này không được phép truy cập. vui lòng liên hệ Hotline 039.569.9029';
 					$this->load->view('backend/login.php', array(
@@ -72,6 +72,6 @@ class Admin_controller extends CI_Controller
 		$this->session->unset_userdata('userInfoAdmin');
 		//chuyển trang và controller
 		$this->load->helper('url');
-		redirect('http://127.0.0.1/quanlykhachsan/admin/login');
+		redirect(base_url().'admin/login');
 	}
 }

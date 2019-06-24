@@ -17,7 +17,6 @@ class User_controller extends CI_Controller
 		$this->load->helper('url');
 	}
 
-
 	public function login()
 	{
 		$ss_name = $this->session->userdata('userInfo');
@@ -322,11 +321,6 @@ class User_controller extends CI_Controller
 
 	}
 
-	public function file()
-	{
-		$this->load->view('forms-upload');
-	}
-
 	public function history()
 	{
 		$ss_name = $this->session->userdata('userInfo');
@@ -341,5 +335,35 @@ class User_controller extends CI_Controller
 	{
 		$this->load->view('frontend/account');
 	}
+
+	public function edit_api()
+	{
+		$input = $this->input->get();
+		if (!empty($input)) {
+			$id_user = $input['id_user'];
+			if (isset($input['field'])) {
+				$data = array(
+					$input['field'] => $input['value']
+				);
+			}else{
+				$data = array(
+					'password' => $input['password'],
+					'new_password' => $input['new_password'],
+				);
+			}
+
+
+			$result = $this->User_model->edit_api($id_user, $data);
+			if ($result == true) {
+				if (isset($input['field'])) {
+					$ss_name = $this->session->userdata('userInfo');
+					$ss_name[$input['field']] = $input['value'];
+					$this->session->set_userdata('userInfo', $ss_name);
+				}
+			}
+			echo json_encode($result);
+		}
+	}
+
 
 }

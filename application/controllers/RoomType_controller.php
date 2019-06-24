@@ -1,5 +1,5 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class RoomType_controller extends CI_Controller
 {
@@ -15,7 +15,7 @@ class RoomType_controller extends CI_Controller
 		$request = $this->RoomType_model->add($input);
 		if ($request == true){
 			$this->load->helper('url');
-			redirect('http://127.0.0.1/quanlykhachsan/admin/room-type');
+			redirect(base_url().'admin/room-type');
 		}
 		if($request == false){
 
@@ -38,7 +38,7 @@ class RoomType_controller extends CI_Controller
 
 		if ($request == true){
 			$this->load->helper('url');
-			redirect('http://127.0.0.1/quanlykhachsan/admin/room-type');
+			redirect(base_url().'admin/room-type');
 		}
 		if ($request == false){
 			$result =  $this->RoomType_model->gethotel();
@@ -63,7 +63,7 @@ class RoomType_controller extends CI_Controller
 		$request = $this->RoomType_model->edit($input);
 		if ($request == true){
 			$this->load->helper('url');
-			redirect('http://127.0.0.1/quanlykhachsan/admin/room-type');
+			redirect(base_url().'admin/room-type');
 		}
 		if ($request == false){
 			$result =  $this->RoomType_model->gethotel();
